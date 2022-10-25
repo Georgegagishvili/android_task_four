@@ -1,6 +1,7 @@
 package com.example.taskfour
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var data: LinkedHashSet<String>
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TodoAdapter
+    private lateinit var sharedPref: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         editText = findViewById(R.id.editText)
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        sharedPref = getSharedPreferences("GENERAL",Context.MODE_PRIVATE)
 
-        val sharedPref = getPreferences(MODE_PRIVATE)
         val savedTodos = sharedPref.getStringSet("TODOS", LinkedHashSet<String>())
         if (savedTodos != null) {
             data = LinkedHashSet(savedTodos)
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     fun onButtonClick(view: View) {
         if (view is Button) {
-            val sharedPref = getPreferences(Context.MODE_PRIVATE)
             data.add(editText.text.toString())
             with(sharedPref.edit()) {
                 putStringSet("TODOS", LinkedHashSet<String>(data))
@@ -50,4 +51,5 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
         }
     }
+
 }

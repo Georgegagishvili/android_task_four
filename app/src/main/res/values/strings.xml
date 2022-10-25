@@ -2,4 +2,5 @@
     <string name="app_name">TaskFour</string>
     <string name="text">Text</string>
     <string name="add_todo">Add Todo</string>
+    <string name="x">X</string>
 </resources>
