@@ -3,4 +3,6 @@
     <string name="text">Text</string>
     <string name="add_todo">Add Todo</string>
     <string name="x">X</string>
+    <string name="description">description</string>
+    <string name="title">title</string>
 </resources>
